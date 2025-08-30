@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 :root {
+  /* experiment with these to change the look of our website! >u< */
+  --color-primary: #1E3A8A;   /* dark blue */
+  --color-secondary: #9333EA; /* purple */
   --background: #ffffff;
   --foreground: #171717;
 }
