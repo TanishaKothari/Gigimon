@@ -23,6 +23,7 @@ const JOB_OPTIONS = [
 
 export default function JobsForm() {
   const [userId, setUserId] = useState(null);
+  const [email, setEmail] = useState("");
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -65,13 +66,14 @@ export default function JobsForm() {
       await fetch('http://localhost:5000/insert-job', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, job_name: job }),
+        body: JSON.stringify({ user_id: userId, job_name: job, email }),
       });
     }
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 2500);
     setSelectedJobs([]);
     setDropdownOpen(false);
+    setEmail("");
   };
 
   return (
@@ -194,6 +196,34 @@ export default function JobsForm() {
               </div>
             )}
           </div>
+
+          <label style={{
+            fontWeight: 500,
+            fontSize: "1.1rem",
+            color: "#374151",
+            marginBottom: "0.7rem",
+            display: "block"
+          }}>
+            Your Email:
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              style={{
+                display: "block",
+                width: "100%",
+                marginTop: "0.4rem",
+                marginBottom: "1rem",
+                padding: "0.6rem 1rem",
+                border: "1.5px solid #c7d2fe",
+                borderRadius: "0.7rem",
+                fontSize: "1rem"
+              }}
+              placeholder="you@example.com"
+            />
+          </label>
+          
           <button
             type="submit"
             disabled={selectedJobs.length === 0}
