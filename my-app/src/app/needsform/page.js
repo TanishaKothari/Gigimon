@@ -62,10 +62,10 @@ export default function JobsForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     for (const job of selectedJobs) {
-      await fetch('http://localhost:5000/insert-job', {
+      await fetch('http://localhost:5000/insert-need', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, job_name: job }),
+        body: JSON.stringify({ user_id: userId, need_name: job }),
       });
     }
     setSubmitted(true);
@@ -84,7 +84,7 @@ export default function JobsForm() {
       padding: "2rem"
     }}>
 
-      <div style={{
+        <div style={{
         position: "absolute",
         top: "0.5rem",
         right: "1rem",
@@ -116,7 +116,7 @@ export default function JobsForm() {
           color: "#2563eb",
           letterSpacing: "0.02em"
         }}>
-          What jobs can you do?
+          What service do you need?
         </h1>
         <form onSubmit={handleSubmit}>
           <label style={{
@@ -225,7 +225,7 @@ export default function JobsForm() {
               fontWeight: 500,
               fontSize: "1rem"
             }}>
-              Jobs submitted successfully!
+              Needs submitted successfully! Searching for matches...
             </div>
           )}
         </form>

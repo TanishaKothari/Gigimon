@@ -38,14 +38,17 @@ def insertUserNeed():
     data = request.get_json()
     user_id = data.get('user_id')
     need_name = data.get('need_name')
-    cursor.execute("INSERT INTO needs VALUES (%s, %s)", (user_id, need_name))
-    mydb.commit()
+    try:
+      cursor.execute("INSERT INTO needs VALUES (%s, %s)", (user_id, need_name))
+      mydb.commit()
+    except mysql.connector.Error as err:
+        return jsonify({'status': 'error', 'message': str(err)}), 400
     matched_users = match(need_name)
     return jsonify({'status': 'success', 'matched_users': matched_users})
 
 # Match person with a need with people who can do that job
 def match(need_name):
-    cursor.execute("SELECT user_id FROM jobs WHERE job_name = %s", need_name)
+    cursor.execute("SELECT user_id FROM jobs WHERE job_name = %s", (need_name,))
     users = [row[0] for row in cursor.fetchall()]
     return users
 
