@@ -18,10 +18,16 @@ export default function Home() {
         <div className="bg-gray-200 flex">
         </div>
 
-        <div className="bg-amber-500 flex">
-          <Link href="/jobsform">Jobs form</Link>
-          <br/><br/>
-          <Link href="/needsform">Needs form</Link>
+        <div className="grid grid-rows-2 bg-amber-500 place-items-center">
+          <div>
+            <div className="">
+              <Link href="/jobsform" className="bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg border-2 border-amber-600 hover:bg-amber-600 transition">Jobs form</Link>
+            </div>
+          </div>
+
+          <div>
+            <Link href="/needsform" className="bg-amber-500 text-white font-semibold py-2 px-6 rounded-lg border-2 border-amber-600 hover:bg-amber-600 transition">Needs form</Link>
+          </div>
         </div>
 
       </div>
