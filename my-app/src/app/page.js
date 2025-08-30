@@ -7,6 +7,8 @@ export default function Home() {
     <div className="">
       <p className="text-center">Home Page</p>
       <Link href="/jobsform">Jobs form</Link>
+      <br></br>
+      <Link href="/needsform">Needs form</Link>
     </div>
   );
 }
