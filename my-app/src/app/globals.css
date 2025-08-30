@@ -1,11 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
 
 :root {
   /* experiment with these to change the look of our website! >u< */
   --color-primary: #1E3A8A;   /* dark blue */
-  --color-secondary: #9333EA; /* purple */
+  --color-secondary: #77D3B7; /* purple */
+  --color-tertiary: #D8618E;    /* pink */
+  --color-quaternary: #1B1B5C;  /* darker blue */
   --background: #ffffff;
   --foreground: #171717;
+   --font-retro: 'Press Start 2P', cursive;
 }
 
 @theme inline {

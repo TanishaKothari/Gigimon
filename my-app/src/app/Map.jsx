@@ -1,6 +1,6 @@
 "use client"; 
 
-import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
 import { useState } from "react";
 
 const containerStyle = {
@@ -20,7 +20,7 @@ const mapOptions = {
   rotateControl: false,             // remove rotation arrows
   scaleControl: false,              // optional: remove scale
   zoomControl: true,                // optional: keep zoom +/- controls
-  mapTypeId: "satellite",           // default to satellite
+  mapTypeId: "roadmap",           // default to satellite
   styles: [                         // remove labels / declutter
     {
       featureType: "all",
@@ -40,7 +40,12 @@ export default function Map() {
       center={center} 
       zoom={15}
       options={mapOptions}>
-        <Marker position={center} onClick={() => setSelected(center)} />
+
+        <Marker 
+        position={center} 
+        onClick={() => setSelected(center)} 
+        />
+
         {selected && (
           <InfoWindow position={selected} onCloseClick={() => setSelected(null)}>
             <div>
@@ -49,6 +54,7 @@ export default function Map() {
             </div>
           </InfoWindow>
         )}
+
       </GoogleMap>
     </LoadScript>
   );
