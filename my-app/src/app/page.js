@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from 'next/link';
 
+import MapClientWrapper from "./MapClient";
 
 export default function Home() {
   return (
@@ -10,24 +11,21 @@ export default function Home() {
       </div>
 
       <div className="col-span-2 bg-amber-50">
-        <p>what</p>
+        <MapClientWrapper/>
       </div>
 
       <div className="col-span-1 bg-amber-100 grid grid-rows-[2fr_1fr]">
-        <div className="bg-gray-200 flex"></div>
+        <div className="bg-gray-200 flex">
+        </div>
 
-        <div className="bg-amber-500 flex"></div>
-
+        <div className="bg-amber-500 flex">
+          <Link href="/jobsform">Jobs form</Link>
+          <br/><br/>
+          <Link href="/needsform">Needs form</Link>
+        </div>
 
       </div>
-
-
-
-
-      <p className="text-center">Home Page</p>
-      <Link href="/jobsform">Jobs form</Link>
-      <br></br>
-      <Link href="/needsform">Needs form</Link>
+      
     </div>
   );
 }
