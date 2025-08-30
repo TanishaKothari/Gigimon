@@ -39,7 +39,7 @@ export default function Home() {
             <NeedCard
               key={idx}
               name={need.name}
-              job={need.job}
+              job={`I need ${need.job}`}
               location={need.location}
               email={need.email}
             />

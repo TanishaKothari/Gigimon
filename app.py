@@ -56,7 +56,7 @@ def insertUserNeed():
 def get_needs():
     cursor.execute("SELECT username, need_name, location, email FROM needs")
     needs = [
-        {"name": row[0], "job": f"I need {row[1]}!", "location": row[2], "email": row[3]}
+        {"name": row[0], "job": row[1], "location": row[2], "email": row[3]}
         for row in cursor.fetchall()
     ]
     return jsonify(needs)
