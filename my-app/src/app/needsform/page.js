@@ -26,6 +26,9 @@ export default function JobsForm() {
   const [selectedJobs, setSelectedJobs] = useState([]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
@@ -65,7 +68,13 @@ export default function JobsForm() {
       await fetch('http://localhost:5000/insert-need', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ user_id: userId, need_name: job }),
+        body: JSON.stringify({
+          user_id: userId,
+          need_name: job,
+          username: name,
+          location,
+          email
+        })
       });
     }
     setSubmitted(true);
@@ -108,6 +117,21 @@ export default function JobsForm() {
         maxWidth: "420px",
         width: "100%"
       }}>
+        <label>
+          Your Name:
+          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+        </label>
+        <br></br>
+        <label>
+          Your Location:
+          <input type="text" value={location} onChange={e => setLocation(e.target.value)} required />
+        </label>
+        <br></br>
+        <label>
+          Your Email:
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+        </label>
+        <br></br>
         <h1 style={{
           textAlign: "center",
           fontWeight: 700,

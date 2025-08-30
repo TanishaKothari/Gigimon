@@ -22,7 +22,7 @@ cursor.execute("USE gigapp")
 
 # Create tables in db
 cursor.execute("CREATE TABLE IF NOT EXISTS jobs (user_id VARCHAR(36) NOT NULL, job_name VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY (user_id, job_name))")
-cursor.execute("CREATE TABLE IF NOT EXISTS needs (user_id VARCHAR(36) NOT NULL, need_name VARCHAR(100) NOT NULL, PRIMARY KEY (user_id, need_name))")
+cursor.execute("CREATE TABLE IF NOT EXISTS needs (user_id VARCHAR(36) NOT NULL, need_name VARCHAR(100) NOT NULL, location VARCHAR(255), email VARCHAR(255), username VARCHAR(255), PRIMARY KEY (user_id, need_name))")
 
 # Insert into jobs
 @app.route('/insert-job', methods=['POST'])
@@ -41,13 +41,25 @@ def insertUserNeed():
     data = request.get_json()
     user_id = data.get('user_id')
     need_name = data.get('need_name')
+    location = data.get('location')
+    email = data.get('email')
+    username = data.get('username')
     try:
-      cursor.execute("INSERT INTO needs VALUES (%s, %s)", (user_id, need_name))
+      cursor.execute("INSERT INTO needs VALUES (%s, %s, %s, %s, %s)", (user_id, need_name, location, email, username))
       mydb.commit()
     except mysql.connector.Error as err:
         return jsonify({'status': 'error', 'message': str(err)}), 400
     matched_users = match_and_notify(need_name)
     return jsonify({'status': 'success', 'matched_users': matched_users})
+
+@app.route('/get-needs', methods=['GET'])
+def get_needs():
+    cursor.execute("SELECT username, need_name, location, email FROM needs")
+    needs = [
+        {"name": row[0], "job": f"I need {row[1]}!", "location": row[2], "email": row[3]}
+        for row in cursor.fetchall()
+    ]
+    return jsonify(needs)
 
 # Match person with a need with people who can do that job
 def match_and_notify(need_name):

@@ -1,10 +1,20 @@
+"use client"
+
 import Image from "next/image";
 import Link from 'next/link';
-
+import { useEffect, useState } from "react";
 import MapClientWrapper from "./MapClient";
 import NeedCard from "./needCard";
 
 export default function Home() {
+  const [needs, setNeeds] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/get-needs")
+      .then(res => res.json())
+      .then(data => setNeeds(data));
+  }, []);
+
   return (
     <div className="h-screen grid grid-rows-[auto_1fr] grid-cols-3">
       <div className="col-span-3 bg-[var(--color-primary)] h-[75px] flex relative">
@@ -25,17 +35,15 @@ export default function Home() {
 
       <div className="col-span-1 grid grid-rows-[2fr_1fr] h-full">
         <div className="bg-[var(--color-quaternary)] flex flex-col gap-2 p-2">
-
-          <NeedCard
-          name="Anne K"
-          job="I need plumbing!"
-          location="Baulkam St"
-          email="annek@gmail.com"></NeedCard>
-
-          <div className="w-full bg-white p-4 rounded-lg shadow">
-            <p>I need tutoring!</p>
-          </div>
-
+          {needs.map((need, idx) => (
+            <NeedCard
+              key={idx}
+              name={need.name}
+              job={need.job}
+              location={need.location}
+              email={need.email}
+            />
+          ))}
         </div>
 
         <div className="grid grid-rows-2 bg-[var(--color-primary)] place-items-center">
