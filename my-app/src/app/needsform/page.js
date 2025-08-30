@@ -117,21 +117,6 @@ export default function JobsForm() {
         maxWidth: "420px",
         width: "100%"
       }}>
-        <label>
-          Your Name:
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
-        </label>
-        <br></br>
-        <label>
-          Your Location:
-          <input type="text" value={location} onChange={e => setLocation(e.target.value)} required />
-        </label>
-        <br></br>
-        <label>
-          Your Email:
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
-        </label>
-        <br></br>
         <h1 style={{
           textAlign: "center",
           fontWeight: 700,
@@ -142,6 +127,22 @@ export default function JobsForm() {
         }}>
           What service do you need?
         </h1>
+        <label>
+          My name is:
+          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+        </label>
+        <br></br>
+        <label>
+          My address is:
+          <input type="text" value={location} onChange={e => setLocation(e.target.value)} required />
+        </label>
+        <br></br>
+        <label>
+          My email is:
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+        </label>
+        <br></br>
+        
         <form onSubmit={handleSubmit}>
           <label style={{
             fontWeight: 500,
@@ -150,7 +151,7 @@ export default function JobsForm() {
             marginBottom: "0.7rem",
             display: "block"
           }}>
-            Select all that apply:
+            I need a... 
           </label>
           <div style={{ position: "relative", margin: "1rem 0" }} ref={dropdownRef}>
             <div
