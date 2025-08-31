@@ -15,10 +15,10 @@ CORS(app)
 mydb = mysql.connector.connect(
   host=os.getenv("DB_HOST"),
   user=os.getenv("DB_USER"),
-  password=os.getenv("DB_PASSWORD")
+  password=os.getenv("DB_PASSWORD"),
+  database=os.getenv("DB_NAME")
 )
 cursor = mydb.cursor()
-cursor.execute("USE gigapp")
 
 # Create tables in db
 cursor.execute("CREATE TABLE IF NOT EXISTS jobs (user_id VARCHAR(36) NOT NULL, job_name VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY (user_id, job_name))")
