@@ -45,20 +45,7 @@ export default function Home() {
               location={need.location}
               email={need.email}
             />
-          ))}
-          <NeedCard
-          name="Samantha"
-          job="I need something quickly!"
-          location="101 Hell Avenue"
-          email="sammy@gmail.com"> 
-          </NeedCard>
-          <NeedCard
-          name="Samantha"
-          job="I need something quickly!"
-          location="101 Hell Avenue"
-          email="sammy@gmail.com"> 
-          </NeedCard>
-          
+          ))}          
           
         
         </div>
