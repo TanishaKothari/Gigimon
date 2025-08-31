@@ -129,17 +129,50 @@ export default function JobsForm() {
         </h1>
         <label>
           My name is:
-          <input type="text" value={name} onChange={e => setName(e.target.value)} required />
+          <input 
+          type="text" 
+          value={name} 
+          onChange={e => setName(e.target.value)} 
+          style={{
+            border: "1px solid gray",   // gray border
+            borderRadius: "6px",        // rounded corners
+            marginBottom: "8px",
+            marginLeft: "4px",
+            padding: "6px"              // little inner padding so text isn’t squished
+          }}
+          required />
         </label>
         <br></br>
         <label>
           My address is:
-          <input type="text" value={location} onChange={e => setLocation(e.target.value)} required />
+          <input 
+          type="text" 
+          value={location} 
+          onChange={e => setLocation(e.target.value)} 
+          style={{
+            border: "1px solid gray",   // gray border
+            borderRadius: "6px",        // rounded corners
+            marginBottom: "8px",
+            marginLeft: "4px",
+            padding: "6px"              // little inner padding so text isn’t squished
+          }}
+          required />
         </label>
         <br></br>
         <label>
           My email is:
-          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
+          <input 
+          type="email" 
+          value={email} 
+          onChange={e => setEmail(e.target.value)} 
+          style={{
+            border: "1px solid gray",   // gray border
+            borderRadius: "6px",        // rounded corners
+            marginBottom: "8px",
+            marginLeft: "4px",
+            padding: "6px"              // little inner padding so text isn’t squished
+          }}
+          required />
         </label>
         <br></br>
         
